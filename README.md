@@ -59,11 +59,15 @@ To deploy the GraphQL API using AWS Lambda and API Gateway:
 ```bash
 npm install -g serverless
 ```
-3. Configure AWS credentials with the Serverless Framework:
+3. Build the project:
+```bash
+npm run build
+```
+4. Configure AWS credentials with the Serverless Framework:
 ```bash
 serverless config credentials --provider aws --key YOUR_ACCESS_KEY --secret YOUR_SECRET_KEY
 ```
-4. Deploy the API to AWS Lambda:
+5. Deploy the API to AWS Lambda:
 ```bash
 serverless deploy
 ```
