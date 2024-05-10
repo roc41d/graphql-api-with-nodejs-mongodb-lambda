@@ -1,7 +1,10 @@
 import mongoose from 'mongoose';
 import { ITodo, TodoSchema } from '../models/todo';
+import dotenv from 'dotenv';
 
-const uri = process.env.MONGO_URI ?? '';
+dotenv.config();
+
+const uri = process.env.MONGODB_URI || '';
 
 async function connectDB() {
     try {
@@ -12,7 +15,7 @@ async function connectDB() {
     }
   }
 
-async function getTodos() {
+async function getTodos(): Promise<ITodo[]> {
     try {
         const todos = await TodoSchema.find();
         return todos;
@@ -22,7 +25,7 @@ async function getTodos() {
     }
 }
 
-async function getTodo(id: string) {
+async function getTodo(id: string): Promise<ITodo>{
     try {
         const todo = await TodoSchema.findById(id);
         if (!todo) {
@@ -35,7 +38,7 @@ async function getTodo(id: string) {
     }
 }
 
-async function addTodo(todo: ITodo) {
+async function addTodo(todo: ITodo): Promise<ITodo> {
     try {
         const newTodo = new TodoSchema(todo);
         await newTodo.save();
@@ -46,7 +49,7 @@ async function addTodo(todo: ITodo) {
     }
 }
 
-async function updateTodo(id: string, updateData: Partial<ITodo>) {
+async function updateTodo(id: string, updateData: Partial<ITodo>): Promise<ITodo>{
     try {
         const updatedTodo = await TodoSchema.findByIdAndUpdate(id, updateData, { new: true });
         if (!updatedTodo) {
@@ -59,7 +62,7 @@ async function updateTodo(id: string, updateData: Partial<ITodo>) {
     }
 }
 
-async function deleteTodo(id: string) {
+async function deleteTodo(id: string): Promise<string>{
     try {
         const deletedTodo = await TodoSchema.findByIdAndDelete(id);
         if (!deletedTodo) {
