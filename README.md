@@ -46,7 +46,7 @@ cp .env.example .env.production
 
 4. Start the development server
 ```bash
-npm start
+npm run dev
 ```
 The server will start locally at [http://localhost:4000/](http://localhost:4000/).
 
@@ -55,14 +55,17 @@ The server will start locally at [http://localhost:4000/](http://localhost:4000/
 To deploy the GraphQL API using AWS Lambda and API Gateway:
 
 1. Set up an AWS account if you haven't already and copy your `YOUR_ACCESS_KEY` and `YOUR_SECRET_KEY`.
+   
 2. Install the Serverless Framework globally:
 ```bash
 npm install -g serverless
 ```
+
 3. Build the project:
 ```bash
 npm run build
 ```
+
 4. Configure AWS credentials with the Serverless Framework:
 ```bash
 serverless config credentials --provider aws --key YOUR_ACCESS_KEY --secret YOUR_SECRET_KEY
